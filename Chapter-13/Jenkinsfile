@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker 'python:3'
-    }
+    agent none
     environment {
         CHAPTER = 'Chapter-13'
     }
@@ -14,6 +12,10 @@ pipeline {
             }
         }
         stage('Style') {
+            agent {
+                docker 'python:3'
+            }
+
             steps {
                 sh '''
                     #!/bin/bash
@@ -30,6 +32,9 @@ pipeline {
             }
         }
         stage('Test') {
+            agent {
+                docker 'python:3'
+            }
             steps {
                 sh '''
                     #!/bin/bash
@@ -46,7 +51,15 @@ pipeline {
                 '''
             }
        }
+       stage('Build docker images') {
+           agent any
+           steps {
+               echo 'Creating new image...'
+               def customImage = docker.build("myblog:${env.BUILD_ID}", "-f deploy/docker/Dockerfile_frontend .")
+           }
+       }
        stage('Publish Docker Image') {
+           agent any
            when { tag "release-*" }
            steps {
                echo 'Creating new image...'
