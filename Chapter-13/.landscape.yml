@@ -1,0 +1,4 @@
+ignore-paths:
+  - migrations
+  - deploy
+  - babel

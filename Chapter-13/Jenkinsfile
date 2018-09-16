@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+    environment {
+        CHAPTER = 'Chapter-13'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building"
+                checkout scm
+            }
+        }
+        stage('Style') {
+            steps {
+                sh '''
+                    #!/bin/bash
+
+                    cd "${CHAPTER}"
+                    python3 -m venv env
+                    source env/bin/activate
+                    python3 -m pip install -r requirements.txt
+                    cd Flask-YouTube
+                    python setup.py build
+                    python setup.py install
+                    cd ..
+                    python3 -m pip install flake8
+                    flake8 --max-line-length 120 webapp
+                '''
+            }
+        }
+        stage('Test') {
+            steps {
+                sh '''
+                    #!/bin/bash
+
+                    cd "${CHAPTER}"
+                    python3 -m venv env
+                    source env/bin/activate
+                    python3 -m pip install -r requirements.txt
+                    cd Flask-YouTube
+                    python setup.py build
+                    python setup.py install
+                    cd ..
+                    python3 -m pip install coverage
+                    coverage run --source webapp --branch -m unittest tests.test_urls.TestURLs
+                    coverage report
+                '''
+            }
+       }
+    }
+}
