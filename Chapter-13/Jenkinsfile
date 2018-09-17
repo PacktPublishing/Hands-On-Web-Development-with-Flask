@@ -71,8 +71,6 @@ pipeline {
                    docker.withRegistry(ECRURL, ECRCRED)
                    {
                        docker.image("myblog:${env.BUILD_ID}").push()
-                   }
-                   {
                        docker.image("myblog_worker:${env.BUILD_ID}").push()
                    }
                }
