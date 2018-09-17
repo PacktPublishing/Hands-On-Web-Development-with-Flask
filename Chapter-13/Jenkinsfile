@@ -69,7 +69,7 @@ pipeline {
                echo 'Creating new image...'
                docker.withRegistry(ECRURL, ECRCRED)
                {
-                   docker.image(("myblog:${env.BUILD_ID}").push()
+                   docker.image("myblog:${env.BUILD_ID}").push()
                }
            }
        }
