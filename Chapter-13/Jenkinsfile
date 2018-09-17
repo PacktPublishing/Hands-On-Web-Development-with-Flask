@@ -55,7 +55,7 @@ pipeline {
            agent any
            steps {
                echo 'Creating new image...'
-               sh 'ls -Rl'
+               dir "${CHAPTER}"
                script {
                     def customImage = docker.build("myblog:${env.BUILD_ID}", "-f ${WORKSPACE}/deploy/docker/Dockerfile_frontend .")
                }
