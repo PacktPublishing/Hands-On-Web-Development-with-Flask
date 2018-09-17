@@ -65,11 +65,11 @@ pipeline {
        }
        stage('Publish Docker Image Development') {
            agent any
+           when {
+               branch 'develop'
+           }
            steps {
-               echo 'Publising new images...'
-               when {
-                   branch 'develop'
-               }
+               echo 'Publishing new images...'
                script {
                    docker.withRegistry(ECRURL, ECRCRED)
                    {
@@ -81,11 +81,11 @@ pipeline {
        }
        stage('Publish Docker Image Production') {
            agent any
+           when {
+               branch 'master'
+           }
            steps {
-               echo 'Publising new images...'
-               when {
-                   branch 'master'
-               }
+               echo 'Publishing new images...'
                script {
                    docker.withRegistry(ECRURL, ECRCRED)
                    {
