@@ -65,7 +65,6 @@ pipeline {
        }
        stage('Publish Docker Image') {
            agent any
-           when { tag "release-*" }
            steps {
                echo 'Creating new image...'
                docker.withRegistry(ECRURL, ECRCRED)
