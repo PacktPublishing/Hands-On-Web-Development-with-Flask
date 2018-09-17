@@ -67,9 +67,11 @@ pipeline {
            agent any
            steps {
                echo 'Creating new image...'
-               docker.withRegistry(ECRURL, ECRCRED)
-               {
-                   docker.image("myblog:${env.BUILD_ID}").push()
+               script {
+                   docker.withRegistry(ECRURL, ECRCRED)
+                   {
+                       docker.image("myblog:${env.BUILD_ID}").push()
+                   }
                }
            }
        }
