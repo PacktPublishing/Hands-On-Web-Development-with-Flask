@@ -2,6 +2,8 @@ pipeline {
     agent any
     environment {
         CHAPTER = 'Chapter-13'
+        ECRURL = 'http://633393569065.dkr.ecr.eu-central-1.amazonaws.com'
+        ECRCRED = 'ecr:eu-central-1:tap_ecr'
     }
 
     stages {
@@ -56,7 +58,8 @@ pipeline {
            steps {
                echo 'Creating new image...'
                script {
-                    def customImage = docker.build("myblog:${env.BUILD_ID}", "-f ${CHAPTER}/deploy/docker/Dockerfile_frontend ${CHAPTER}")
+                    def frontend = docker.build("myblog:${env.BUILD_ID}", "-f ${CHAPTER}/deploy/docker/Dockerfile_frontend ${CHAPTER}")
+                    def worker = docker.build("myblog_worker:${env.BUILD_ID}", "-f ${CHAPTER}/deploy/docker/Dockerfile_worker ${CHAPTER}")
                }
            }
        }
@@ -65,6 +68,10 @@ pipeline {
            when { tag "release-*" }
            steps {
                echo 'Creating new image...'
+               docker.withRegistry(ECRURL, ECRCRED)
+               {
+                   docker.image(("myblog:${env.BUILD_ID}").push()
+               }
            }
        }
     }
