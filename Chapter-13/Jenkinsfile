@@ -57,7 +57,7 @@ pipeline {
                echo 'Creating new image...'
                sh 'ls -Rl'
                script {
-                    def customImage = docker.build("myblog:${env.BUILD_ID}", "-f deploy/docker/Dockerfile_frontend .")
+                    def customImage = docker.build("myblog:${env.BUILD_ID}", "-f ${WORKSPACE}/deploy/docker/Dockerfile_frontend .")
                }
            }
        }
