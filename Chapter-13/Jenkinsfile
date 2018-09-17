@@ -63,15 +63,34 @@ pipeline {
                }
            }
        }
-       stage('Publish Docker Image') {
+       stage('Publish Docker Image Development') {
            agent any
            steps {
                echo 'Publising new images...'
+               when {
+                   branch 'develop'
+               }
                script {
                    docker.withRegistry(ECRURL, ECRCRED)
                    {
-                       docker.image("myblog:${env.BUILD_ID}").push()
-                       docker.image("myblog_worker:${env.BUILD_ID}").push()
+                       docker.image("dev/myblog:${env.BUILD_ID}").push()
+                       docker.image("dev/myblog_worker:${env.BUILD_ID}").push()
+                   }
+               }
+           }
+       }
+       stage('Publish Docker Image Production') {
+           agent any
+           steps {
+               echo 'Publising new images...'
+               when {
+                   branch 'master'
+               }
+               script {
+                   docker.withRegistry(ECRURL, ECRCRED)
+                   {
+                       docker.image("prod/myblog:${env.BUILD_ID}").push()
+                       docker.image("prod/myblog_worker:${env.BUILD_ID}").push()
                    }
                }
            }
