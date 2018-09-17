@@ -2,10 +2,8 @@ pipeline {
     agent any
     environment {
         CHAPTER = 'Chapter-13'
-        AWS_ACCOUNT = '633393569065'
-        AWS_REGION = 'eu-central-1'
-        ECRURL = 'http://${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com'
-        ECRCRED = 'ecr:${AWS_REGION}:ecr-credentials'
+        ECRURL = 'http://633393569065.dkr.ecr.eu-central-1.amazonaws.com'
+        ECRCRED = 'ecr:eu-central-1:ecr-credentials'
     }
 
     stages {
