@@ -3,7 +3,7 @@ pipeline {
     environment {
         CHAPTER = 'Chapter-13'
         ECRURL = 'http://633393569065.dkr.ecr.eu-central-1.amazonaws.com'
-        ECRCRED = 'ecr:eu-central-1:tap_ecr'
+        ECRCRED = 'ecr:eu-central-1:ecr-credentials'
     }
 
     stages {
