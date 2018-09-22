@@ -1,8 +1,13 @@
 pipeline {
     agent any
+
+    parameters {
+            string(defaultValue: true, description: '', name: 'ecrURL')
+    }
+
     environment {
         CHAPTER = 'Chapter-13'
-        ECRURL = 'http://633393569065.dkr.ecr.eu-central-1.amazonaws.com'
+        ECRURL = "${params.ecrURL}"
         ECRCRED = 'ecr:eu-central-1:ecr-credentials'
     }
 
