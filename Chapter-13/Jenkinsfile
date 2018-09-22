@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-            string(defaultValue: true, description: '', name: 'ecrURL')
+            string(defaultValue: "http://XXXXXX.dkr.ecr.eu-central-1.amazonaws.com", description: '', name: 'ecrURL')
     }
 
     environment {
