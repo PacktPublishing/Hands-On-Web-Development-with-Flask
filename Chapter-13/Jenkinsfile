@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-            string(defaultValue: "http://XXXXXX.dkr.ecr.eu-central-1.amazonaws.com", description: '', name: 'ecrURL')
+            string(description: 'Your AWS ECR URL: http://<AWS ACCOUNT NUMBER>.dkr.ecr.<REGION>.amazonaws.com', name: 'ecrURL')
     }
 
     environment {
