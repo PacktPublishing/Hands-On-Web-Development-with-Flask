@@ -1,2 +1,3 @@
 Flask
-Flask-MongoDB
+Flask-sqlalchemy
+Flask-Migrate
