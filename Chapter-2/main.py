@@ -81,10 +81,11 @@ class Tag(db.Model):
 
 @app.route('/')
 def home(): 
-    models = list()
+    result = "<h1>Tables</h1><br><ul>"
     for table in db.metadata.tables.items():
-        models.append(table)
-    return "<h1>Tables</h1><br>" + str(models)
+        result += "<li>%s</li>" % str(table)
+    result += "</ul>"
+    return result
 
 if __name__ == '__main__':
     app.run()
