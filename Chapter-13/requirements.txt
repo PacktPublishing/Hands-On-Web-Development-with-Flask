@@ -24,4 +24,5 @@ flask-dance
 celery
 flask-celery-helper
 selenium
+python-dotenv
 

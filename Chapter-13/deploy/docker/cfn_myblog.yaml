@@ -59,8 +59,6 @@ Parameters:
     Default: rabbitmq
     NoEcho: true
 
-
-
 Mappings:
   AWSRegionToAMI:
     us-east-2:
@@ -178,6 +176,11 @@ Resources:
           FromPort: '22'
           ToPort: '22'
           CidrIp: '0.0.0.0/0'
+
+  ECSCluster:
+    Type: "AWS::ECS::Cluster"
+    Properties:
+      ClusterName: !Sub ${Environment}-${ApplicationName}
 
   ECSAutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
@@ -443,11 +446,6 @@ Resources:
             - ecs:UpdateService
             Resource: "*"
 
-  ECSCluster:
-    Type: "AWS::ECS::Cluster"
-    Properties:
-      ClusterName: !Sub ${Environment}-${ApplicationName}
-
   FrontEndTask:
     DependsOn: WorkerTask
     Type: "AWS::ECS::TaskDefinition"
@@ -558,7 +556,7 @@ Resources:
     Properties:
       Cluster: !Ref ECSCluster
       DeploymentConfiguration:
-        MaximumPercent: 100
+        MaximumPercent: 200
         MinimumHealthyPercent: 50
       DesiredCount: 2
       TaskDefinition: !Ref FrontEndTask
@@ -576,7 +574,7 @@ Resources:
     Properties:
       Cluster: !Ref ECSCluster
       DeploymentConfiguration:
-        MaximumPercent: 100
+        MaximumPercent: 200
         MinimumHealthyPercent: 50
       DesiredCount: 2
       TaskDefinition: !Ref WorkerTask
@@ -729,5 +727,5 @@ Resources:
 Outputs:
   MyBlogURL:
     Description: Frontend ELB DNSName
-    Value: !Sub ${ELBFrontEnd.DNSName}
+    Value: !Sub http://${ELBFrontEnd.DNSName}
 
