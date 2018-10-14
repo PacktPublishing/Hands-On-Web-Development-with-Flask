@@ -1,0 +1,11 @@
+blog/controllers.py
+
+def home(page=1):
+    posts = Post.query.order_by(Post.publish_date.desc()).paginate(page,
+                                                                   current_app.config.get('POSTS_PER_PAGE', 10),
+                                                                   False)
+
+def new_post():
+...
+remove datetime.datetime.now
+
