@@ -9,3 +9,8 @@ def new_post():
 ...
 remove datetime.datetime.now
 
+
+Check requirements.txt
+
+Change test_data.py (generate_users)
+
