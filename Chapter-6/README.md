@@ -1,5 +1,5 @@
-Chapter 5 - Advanced application structure
-==========================================
+Chapter 6 - Securing your app
+=============================
 
 To run the application
 ----------------------
