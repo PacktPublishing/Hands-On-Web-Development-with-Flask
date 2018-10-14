@@ -1,5 +1,5 @@
-Chapter 13 - Creating Models with SQLAlchemy
-============================================
+Chapter 2 - Creating Models with SQLAlchemy
+===========================================
 
 To run the application
 ----------------------

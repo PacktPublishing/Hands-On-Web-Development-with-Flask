@@ -1,5 +1,5 @@
-Chapter 1 - Getting Started
-===========================
+Chapter 4 - Creating Controllers with blueprints
+================================================
 
 To run the application
 ----------------------

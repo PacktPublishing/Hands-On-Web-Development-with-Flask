@@ -1,5 +1,5 @@
-Chapter 1 - Getting Started
-===========================
+Chapter 3 - Creating Views with template
+========================================
 
 To run the application
 ----------------------
