@@ -51,7 +51,6 @@ def new_post():
         new_post.title = form.title.data
         new_post.user_id = current_user.id
         new_post.text = form.text.data
-        new_post.publish_date = datetime.datetime.now()
         db.session.add(new_post)
         db.session.commit()
         flash('Post added', 'info')
@@ -63,7 +62,7 @@ def new_post():
 @login_required
 def edit_post(id):
     post = Post.query.get_or_404(id)
-    # We want admins to be able to edit any post
+    # We want that the current user can edit is own posts
     if current_user.id == post.user.id:
         form = PostForm()
         if form.validate_on_submit():
