@@ -10,8 +10,15 @@ def new_post():
 remove datetime.datetime.now
 
 
+def edit_post():
+..
+# replace add by merge
+db.session.merge(post)
+
 Check requirements.txt
 
 Change test_data.py (generate_users)
 
 Update manage.py
+
+Update api

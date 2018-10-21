@@ -133,9 +133,10 @@ class PostApi(Resource):
         if args['text']:
             post.text = args['text']
         if args['tags']:
+            print("Tags %s" % args['tags'])
             add_tags_to_post(post, args['tags'])
 
-        db.session.add(post)
+        db.session.merge(post)
         db.session.commit()
         return {'id': post.id}, 201
 

@@ -13,30 +13,37 @@ post_post_parser.add_argument(
     'title',
     type=str,
     required=True,
-    help="Title is required"
+    help="Title is required",
+    location=('json', 'values')
 )
 post_post_parser.add_argument(
     'text',
     type=str,
     required=True,
-    help="Body text is required"
+    help="Body text is required",
+    location=('json', 'values')
 )
 post_post_parser.add_argument(
     'tags',
     type=str,
-    action='append'
+    action='append',
+    location=('json', 'values')
 )
 
 post_put_parser = reqparse.RequestParser()
 post_put_parser.add_argument(
     'title',
-    type=str
+    type=str,
+    location=('json', 'values')
 )
 post_put_parser.add_argument(
     'text',
-    type=str
+    type=str,
+    location=('json', 'values')
 )
 post_put_parser.add_argument(
     'tags',
-    type=str
+    type=str,
+    action='append',
+    location=('json', 'values')
 )

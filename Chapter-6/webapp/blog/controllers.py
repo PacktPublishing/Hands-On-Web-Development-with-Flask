@@ -69,13 +69,14 @@ def edit_post(id):
             post.title = form.title.data
             post.text = form.text.data
             post.publish_date = datetime.datetime.now()
-            db.session.add(post)
+            db.session.merge(post)
             db.session.commit()
             return redirect(url_for('.post', post_id=post.id))
         form.title.data = post.title
         form.text.data = post.text
         return render_template('edit.html', form=form, post=post)
     abort(403)
+
 
 @blog_blueprint.route('/post/<int:post_id>', methods=('GET', 'POST'))
 def post(post_id):

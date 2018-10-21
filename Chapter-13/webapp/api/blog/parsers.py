@@ -44,8 +44,10 @@ post_put_parser.add_argument(
 post_put_parser.add_argument(
     'tags',
     type=str,
+    action='append',
     location=('json', 'values')
 )
+
 
 reminder_post_parser = reqparse.RequestParser()
 reminder_post_parser.add_argument(
