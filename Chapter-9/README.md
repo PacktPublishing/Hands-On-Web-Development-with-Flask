@@ -28,5 +28,3 @@ Run celery worker
 ```
 celery -A celery_runner worker -l info
 ```
-
-
