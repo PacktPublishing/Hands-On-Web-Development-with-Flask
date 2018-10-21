@@ -1,4 +1,11 @@
-from webapp.models import app, db, User, Post, Tag, migrate
+import os
+from webapp import db, migrate, create_app
+from webapp.auth.models import User
+from webapp.blog.models import Post, Tag
+
+
+env = os.environ.get('WEBAPP_ENV', 'dev')
+app = create_app('config.%sConfig' % env.capitalize())
 
 
 @app.shell_context_processor

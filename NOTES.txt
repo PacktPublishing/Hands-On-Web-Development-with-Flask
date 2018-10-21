@@ -14,3 +14,4 @@ Check requirements.txt
 
 Change test_data.py (generate_users)
 
+Update manage.py
