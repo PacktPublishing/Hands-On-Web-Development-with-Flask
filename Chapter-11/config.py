@@ -16,7 +16,7 @@ class Config(object):
     FACEBOOK_CLIENT_SECRET = "XXXX"
 
     CELERY_BROKER_URL = "amqp://rabbitmq:rabbitmq@localhost//"
-    CELERY_RESULT_BACKEND = "amqp://rabbitmq:rabbitmq@localhost//"
+    CELERY_BACKEND_URL = "amqp://rabbitmq:rabbitmq@localhost//"
 
     MAIL_SERVER = "smtp.gmail.com"
     MAIL_PORT = 465

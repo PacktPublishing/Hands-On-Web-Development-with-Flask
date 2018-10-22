@@ -30,8 +30,8 @@ class DevConfig(Config):
     CELERY_RESULT_BACKEND = "amqp://rabbitmq:rabbitmq@localhost//"
 
     SMTP_SERVER = "smtp.gmail.com"
-    SMTP_USER = "fabtest10@gmail.com"
-    SMTP_PASSWORD = "xpto2018"
+    SMTP_USER = "someemail@gmail.com"
+    SMTP_PASSWORD = "password"
     SMTP_FROM = "from@flask.com"
 
     CELERYBEAT_SCHEDULE = {
