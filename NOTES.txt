@@ -26,3 +26,5 @@ Update manage.py
 - Update config.py with CELERY_RESULT_BACKEND
 
 - Update celery_runner.py
+
+- Update all admin module
