@@ -39,7 +39,7 @@ class ProdConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DB_URI', '')
 
     CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', '')
-    CELERY_BACKEND_URL = os.environ.get('CELERY_BROKER_URL', '')
+    CELERY_RESULT_BACKEND = os.environ.get('CELERY_BROKER_URL', '')
 
     CACHE_TYPE = 'redis'
     CACHE_REDIS_HOST = os.environ.get('REDIS_HOST', '')
@@ -68,7 +68,7 @@ class TestConfig(Config):
     WTF_CSRF_ENABLED = False
 
     CELERY_BROKER_URL = "amqp://guest:guest@localhost:5672//"
-    CELERY_BACKEND_URL = "amqp://guest:guest@localhost:5672//"
+    CELERY_RESULT_BACKEND = "amqp://guest:guest@localhost:5672//"
 
     MAIL_SERVER = 'localhost'
     MAIL_PORT = 25

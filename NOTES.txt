@@ -21,4 +21,8 @@ Change test_data.py (generate_users)
 
 Update manage.py
 
-Update api
+- Update api
+
+- Update config.py with CELERY_RESULT_BACKEND
+
+- Update celery_runner.py
