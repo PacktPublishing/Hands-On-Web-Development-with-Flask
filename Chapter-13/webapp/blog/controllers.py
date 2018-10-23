@@ -95,7 +95,7 @@ def edit_post(id):
             post.youtube_id = form.youtube_id.data
             post.text = form.text.data
             post.publish_date = datetime.datetime.now()
-            db.session.add(post)
+            db.session.merge(post)
             db.session.commit()
             flash('Post edited', 'info')
             return redirect(url_for('.post', post_id=post.id))

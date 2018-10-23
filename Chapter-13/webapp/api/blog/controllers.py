@@ -1,4 +1,4 @@
-from flask import abort, current_app
+from flask import abort, current_app, jsonify
 from flask_restful import Resource, fields, marshal_with
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from webapp.blog.models import db, Post, Tag, Reminder
@@ -102,21 +102,18 @@ class PostApi(Resource):
             return posts.items
 
     @jwt_required
-    def post(self, post_id=None):
-        if post_id:
-            abort(400)
-        else:
-            args = post_post_parser.parse_args(strict=True)
-            new_post = Post(args['title'])
-            new_post.user_id = get_jwt_identity()
-            new_post.text = args['text']
+    def post(self):
+        args = post_post_parser.parse_args(strict=True)
+        new_post = Post(args['title'])
+        new_post.user_id = get_jwt_identity()
+        new_post.text = args['text']
 
-            if args['tags']:
-                add_tags_to_post(new_post, args['tags'])
+        if args['tags']:
+            add_tags_to_post(new_post, args['tags'])
 
-            db.session.add(new_post)
-            db.session.commit()
-            return {'id': new_post.id}, 201
+        db.session.add(new_post)
+        db.session.commit()
+        return {'id': new_post.id}, 201
 
     @jwt_required
     def put(self, post_id=None):

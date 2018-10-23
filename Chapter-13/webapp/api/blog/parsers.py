@@ -48,7 +48,6 @@ post_put_parser.add_argument(
     location=('json', 'values')
 )
 
-
 reminder_post_parser = reqparse.RequestParser()
 reminder_post_parser.add_argument(
     'email',
